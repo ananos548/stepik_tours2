@@ -1,0 +1,36 @@
+{% extends 'tours/base.html' %}
+
+{% block container %}
+<main class="container mt-3">
+    <!-- HERO -->
+
+    <section class="jumbotron text-center mt-4"
+             style="background: url('https://avatars.mds.yandex.net/get-zen_doc/1721884/pub_5e04a389c05c7100ae4c5c14_5e04a3a442b03d00ada771f7/scale_1200'); background-position: center center">
+        <h1 class="display-4" style="color: #ffc107; font-weight: bold">Всякие туры</h1>
+        <p class="lead" style="color: #ffc107; font-weight: bold">{{ subtitle }}</p>
+        <p class="mt-5 w-50 mx-auto" style="color: #ffc107; font-weight: bold">{{ description }}</p>
+    </section>
+
+    <!-- CARDS -->
+    <div class="row mt-5">
+                {% for tours_random, k in tours_random.items %}
+                <div class="col-4">
+                    <div class="card mb-4">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <img class="card-img-top embed-responsive-item" src="{{ k.picture }}" alt=""/>
+                        </div>
+                        <div class="card-body">
+                            <h2 class="h5 card-title">{{ k.title }}</h2>
+                            <p class="card-text">{{ k.description }}</p>
+                            <p class="btn btn-warning btn-sm">{{ k.date }}</p>
+                            <p class="btn btn-warning btn-sm">{{ k.nights }} ночей</p>
+                            <p class="btn btn-warning btn-sm">{{ k.price }} Р</p>
+                            <p class="btn btn-warning btn-sm">{{ k.stars }}★</p>
+                            <a href="{% url 'tour-view' tours_random %}" class="btn btn-sm btn-primary">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+    </div>
+{% endblock %}
+</main>
